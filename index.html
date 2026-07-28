@@ -3,378 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البحث عن نتيجة الثانوية العامة</title>
+    <title>الموقع متوقف مؤقتًا</title>
     <!-- Google Font Cairo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --success: #16a34a;
-            --success-bg: #f0fdf4;
-            --danger: #dc2626;
-            --danger-bg: #fef2f2;
-            --border: #e2e8f0;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        }
+        /*
+         * ═══════════════════════════════════════════════════════════════
+         *  PAGE DE MAINTENANCE - SITE TEMPORARILY DISABLED
+         * ═══════════════════════════════════════════════════════════════
+         *  Cette page remplace temporairement l'application.
+         *  Pour revenir à l'application originale :
+         *    1. Renommer "api_disabled" en "api"
+         *    2. Restaurer "index.html.bak" en "index.html"
+         *    3. Remettre les rewrites dans vercel.json
+         * ═══════════════════════════════════════════════════════════════
+         */
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding: 2rem 1rem;
+            justify-content: center;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative background elements */
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::before {
+            width: 600px;
+            height: 600px;
+            background: #3b82f6;
+            top: -200px;
+            left: -200px;
+        }
+
+        body::after {
+            width: 500px;
+            height: 500px;
+            background: #8b5cf6;
+            bottom: -150px;
+            right: -150px;
         }
 
         .container {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
             width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            padding: 3rem 2.5rem;
             text-align: center;
-            margin-bottom: 2.5rem;
+            box-shadow:
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        header h1 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .search-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            box-shadow: var(--shadow-md);
-            margin-bottom: 2rem;
-            transition: box-shadow 0.2s ease;
-        }
-
-        .search-card:focus-within {
-            box-shadow: var(--shadow-lg);
-        }
-
-        .search-box {
+        .icon-wrapper {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.05));
+            border-radius: 50%;
             display: flex;
-            gap: 0.75rem;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(251, 191, 36, 0.3);
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .search-input {
-            flex: 1;
-            padding: 0.75rem 1.25rem;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.2); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(251, 191, 36, 0); }
+        }
+
+        .icon-wrapper svg {
+            width: 50px;
+            height: 50px;
+            fill: none;
+            stroke: #fbbf24;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .subtitle {
             font-size: 1.1rem;
-            border: 1px solid var(--border);
-            border-radius: 0.75rem;
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .stats-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 2rem;
+            padding: 0.6rem 1.5rem;
+            color: #fca5a5;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .message-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1.25rem;
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
             text-align: right;
         }
 
-        .search-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        .message-card p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        .search-button {
-            padding: 0.75rem 2rem;
-            background-color: var(--primary);
-            color: #ffffff;
-            border: none;
-            border-radius: 0.75rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
+        .message-card p:last-child {
+            margin-bottom: 0;
         }
 
-        .search-button:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .loader {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem 0;
-        }
-
-        .spinner {
-            width: 2.5rem;
-            height: 2.5rem;
-            border: 4px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(-360deg); }
-        }
-
-        .results-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .student-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .student-card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .student-info h3 {
-            font-size: 1.2rem;
+        .message-card strong {
+            color: #fbbf24;
             font-weight: 700;
-            margin-bottom: 0.25rem;
-            color: var(--text-main);
         }
 
-        .student-info p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .student-stats {
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .degree-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .degree-info .percentage {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .degree-info .score {
+        .action-note {
+            color: rgba(255, 255, 255, 0.4);
             font-size: 0.9rem;
-            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1.5rem;
+            margin-top: 0.5rem;
         }
 
-        .status-badge {
-            padding: 0.4rem 1rem;
-            border-radius: 2rem;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-align: center;
-            min-width: 100px;
+        .action-note span {
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        .status-badge.passed {
-            background-color: var(--success-bg);
-            color: var(--success);
-            border: 1px solid rgba(22, 163, 74, 0.2);
+        .heart {
+            color: #ef4444;
         }
 
-        .status-badge.failed {
-            background-color: var(--danger-bg);
-            color: var(--danger);
-            border: 1px solid rgba(220, 38, 38, 0.2);
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        @media (max-width: 600px) {
-            .student-card {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1.5rem;
+                border-radius: 1.5rem;
             }
-            .student-stats {
-                width: 100%;
-                justify-content: space-between;
-                flex-direction: row-reverse;
+
+            h1 {
+                font-size: 1.75rem;
             }
-            .degree-info {
-                align-items: flex-start;
+
+            .icon-wrapper {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 1.5rem;
+            }
+
+            .icon-wrapper svg {
+                width: 40px;
+                height: 40px;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .message-card {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .message-card p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 1rem;
+            }
+
+            .container {
+                padding: 1.5rem 1.25rem;
+                border-radius: 1.25rem;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .icon-wrapper {
+                width: 64px;
+                height: 64px;
+                margin-bottom: 1.25rem;
+            }
+
+            .icon-wrapper svg {
+                width: 32px;
+                height: 32px;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .stats-badge {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .message-card {
+                padding: 1.25rem 1rem;
+            }
+
+            .message-card p {
+                font-size: 0.95rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <!--
+    ═══════════════════════════════════════════════════════════════════════
+    ⚠️  PAGE DE MAINTENANCE - MAINTENANCE MODE
+
+    Pour restaurer l'application originale :
+      1. Renommez "api_disabled" → "api"
+      2. Renommez "index.html.bak" → "index.html"
+      3. Remettez les rewrites dans vercel.json :
+         {
+           "rewrites": [
+             { "source": "/api/(.*)", "destination": "/api/index.py" }
+           ]
+         }
+      4. Repoussez sur GitHub
+    ═══════════════════════════════════════════════════════════════════════
+    -->
+
     <div class="container">
-        <header>
-            <h1>البحث عن نتيجة الثانوية العامة</h1>
-            <p>ابحث باسمك أو رقم جلوسك للحصول على تفاصيل النتيجة والنسبة المئوية</p>
-        </header>
+        <!-- Construction icon (SVG) -->
+        <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <line x1="3" y1="9" x2="21" y2="9" />
+                <line x1="9" y1="21" x2="9" y2="9" />
+                <polyline points="14,14 18,14 18,18" />
+                <line x1="14" y1="18" x2="18" y2="18" />
+            </svg>
+        </div>
 
-        <main>
-            <div class="search-card">
-                <form id="search-form" onsubmit="handleSearch(event)">
-                    <div class="search-box">
-                        <input 
-                            type="text" 
-                            id="search-input" 
-                            class="search-input" 
-                            placeholder="اكتب رقم الجلوس أو اسم الطالب للبحث..."
-                            autocomplete="off"
-                            required
-                        >
-                        <button type="submit" class="search-button">بحث</button>
-                    </div>
-                </form>
-            </div>
+        <h1>🚧 الموقع متوقف مؤقتًا</h1>
+        <p class="subtitle">نعتذر عن الإزعاج.</p>
 
-            <div class="loader" id="loader">
-                <div class="spinner"></div>
-            </div>
+        <div class="stats-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            +60,000 مستخدم
+        </div>
 
-            <div class="results-container" id="results">
-                <!-- Results will be dynamically populated here -->
-            </div>
-        </main>
+        <div class="message-card">
+            <p>
+                شهدت المنصة إقبالًا كبيرًا، وقد
+                <strong>تجاوز عدد المستخدمين 60,000 مستخدم</strong>،
+                مما أدى إلى استهلاك الحد المتاح من موارد الاستضافة.
+            </p>
+            <p>
+                نعمل حاليًا على ترقية البنية التحتية وزيادة سعة الخوادم
+                لاستيعاب جميع المستخدمين وتحسين الأداء.
+            </p>
+            <p>
+                سيعود الموقع للعمل في أقرب وقت ممكن.
+            </p>
+            <p>
+                شكرًا لتفهمكم ودعمكم. <span class="heart">💙</span>
+            </p>
+        </div>
 
-            <footer style="text-align: center; margin-top: 2rem; padding: 1.5rem 0; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.95rem;">
-            <div style="margin-bottom: 0.75rem; font-size: 0.9rem;">
-                عدد الزوار: <span id="visitor-count" style="font-weight: 700; color: var(--primary);">-</span>
-            </div>
-            تم تطوير الموقع بواسطة
-            <a href="https://www.facebook.com/dev3mora/" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none; font-weight: 700;">
-                م عمر أبوالخير
-            </a>
-        </footer>
+        <div class="action-note">
+            <span>فريق التطوير</span>
+        </div>
     </div>
 
-    <script>
-        let debounceTimer;
-        const searchInput = document.getElementById('search-input');
-        const resultsContainer = document.getElementById('results');
-        const loader = document.getElementById('loader');
-
-        // Automatic search on typing with debounce
-        searchInput.addEventListener('input', () => {
-            clearTimeout(debounceTimer);
-            const query = searchInput.value.trim();
-            if (query.length >= 2) {
-                debounceTimer = setTimeout(() => {
-                    performSearch(query);
-                }, 300);
-            } else if (query.length === 0) {
-                resultsContainer.innerHTML = '';
-            }
-        });
-
-        function handleSearch(event) {
-            event.preventDefault();
-            const query = searchInput.value.trim();
-            if (query) {
-                performSearch(query);
-            }
-        }
-
-        async function performSearch(query) {
-            loader.style.display = 'flex';
-            resultsContainer.innerHTML = '';
-
-            try {
-                // Point to Vercel api endpoint
-                const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-                const data = await response.json();
-                
-                loader.style.display = 'none';
-
-                if (data.results && data.results.length > 0) {
-                    renderResults(data.results);
-                } else {
-                    resultsContainer.innerHTML = `
-                        <div class="no-results">
-                            لا توجد نتائج مطابقة لـ "${query}"
-                        </div>
-                    `;
-                }
-            } catch (error) {
-                console.error("Search error:", error);
-                loader.style.display = 'none';
-                resultsContainer.innerHTML = `
-                    <div class="no-results" style="color: var(--danger)">
-                        حدث خطأ أثناء الاتصال بالخادم. يرجى المحاولة لاحقاً.
-                    </div>
-                `;
-            }
-        }
-
-        // Fetch and display visitor count
-        async function fetchVisitorCount() {
-            try {
-                const response = await fetch('/api/visitors');
-                const data = await response.json();
-                document.getElementById('visitor-count').textContent = data.count.toLocaleString();
-            } catch (e) {
-                document.getElementById('visitor-count').textContent = '؟';
-            }
-        }
-        fetchVisitorCount();
-
-        function renderResults(students) {
-            resultsContainer.innerHTML = students.map(student => `
-                <div class="student-card">
-                    <div class="student-info">
-                        <h3>${student.name}</h3>
-                        <p>رقم الجلوس: <strong>${student.seating_no}</strong></p>
-                    </div>
-                    <div class="student-stats">
-                        <div class="status-badge ${student.passed ? 'passed' : 'failed'}">
-                            ${student.status_text}
-                        </div>
-                        <div class="degree-info">
-                            <span class="percentage">${student.percentage}%</span>
-                            <span class="score">${student.degree} / 320</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-    </script>
 </body>
 </html>
