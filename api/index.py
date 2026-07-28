@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 import sqlite3
 import os
+import urllib.request
+import struct
 
 app = FastAPI(title="High School Exam Results API")
 
@@ -15,11 +17,45 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Resolve SQLite database path
-current_dir = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(current_dir, "..", "results.db")
-if not os.path.exists(db_path):
-    db_path = os.path.join(current_dir, "results.db")
+DB_GITHUB_URL = "https://media.githubusercontent.com/media/OmarAbouelkheirr/thanawiya/main/results.db"
+
+def is_lfs_pointer(path):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return f.read(100).startswith("version https://git-lfs.github.com/")
+    except Exception:
+        return False
+
+def ensure_db():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    paths_to_try = [
+        os.path.join(current_dir, "..", "results.db"),
+        os.path.join(current_dir, "results.db"),
+        os.path.join("/tmp", "results.db"),
+    ]
+
+    for p in paths_to_try:
+        if os.path.exists(p) and os.path.getsize(p) > 1024 and not is_lfs_pointer(p):
+            return p
+
+    # Download to /tmp
+    tmp_path = "/tmp/results.db"
+    try:
+        print(f"Downloading database from {DB_GITHUB_URL} to {tmp_path}...")
+        urllib.request.urlretrieve(DB_GITHUB_URL, tmp_path)
+        if os.path.exists(tmp_path) and os.path.getsize(tmp_path) > 1024:
+            print(f"Database downloaded successfully ({os.path.getsize(tmp_path)} bytes)")
+            return tmp_path
+    except Exception as e:
+        print(f"Failed to download database: {e}")
+
+    # Try local even if LFS pointer (unlikely to work)
+    for p in paths_to_try:
+        if os.path.exists(p) and os.path.getsize(p) > 0:
+            return p
+    return paths_to_try[0]
+
+db_path = ensure_db()
 
 STATUS_MAP = {
     1: {"text": "ناجح دور أول", "passed": True},
