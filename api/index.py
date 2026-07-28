@@ -57,6 +57,40 @@ def ensure_db():
 
 db_path = ensure_db()
 
+VISITOR_DB = os.path.join(os.path.dirname(db_path) if os.path.isdir(os.path.dirname(db_path)) else "/tmp", "visitors.db")
+
+def init_visitor_db():
+    try:
+        conn = sqlite3.connect(VISITOR_DB)
+        conn.execute("CREATE TABLE IF NOT EXISTS visitors (id INTEGER PRIMARY KEY, count INTEGER DEFAULT 0)")
+        conn.execute("INSERT OR IGNORE INTO visitors (id, count) VALUES (1, 0)")
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print(f"Visitor DB init warning: {e}")
+
+def get_visitor_count():
+    try:
+        conn = sqlite3.connect(VISITOR_DB)
+        cursor = conn.cursor()
+        cursor.execute("SELECT count FROM visitors WHERE id = 1")
+        row = cursor.fetchone()
+        conn.close()
+        return row[0] if row else 0
+    except Exception:
+        return 0
+
+def increment_visitor_count():
+    try:
+        conn = sqlite3.connect(VISITOR_DB)
+        conn.execute("UPDATE visitors SET count = count + 1 WHERE id = 1")
+        conn.commit()
+        conn.close()
+    except Exception as e:
+        print(f"Visitor increment warning: {e}")
+
+init_visitor_db()
+
 STATUS_MAP = {
     1: {"text": "ناجح دور أول", "passed": True},
     2: {"text": "راسب دور أول", "passed": False},
@@ -90,12 +124,19 @@ def search(q: str = Query(..., min_length=1)):
         )
         rows = cursor.fetchall()
     else:
-        # Prefix search by name (utilizes idx_name)
-        # Using LIKE 'query%'
-        cursor.execute(
-            "SELECT seating_no, name, degree, status FROM students WHERE name LIKE ? LIMIT 50",
-            (q_stripped + "%",)
-        )
+        words = q_stripped.split()
+        if len(words) > 1:
+            conditions = " AND ".join(["name LIKE ?" for _ in words])
+            params = ["%" + w + "%" for w in words]
+            cursor.execute(
+                f"SELECT seating_no, name, degree, status FROM students WHERE {conditions} LIMIT 50",
+                params
+            )
+        else:
+            cursor.execute(
+                "SELECT seating_no, name, degree, status FROM students WHERE name LIKE ? LIMIT 50",
+                ("%" + q_stripped + "%",)
+            )
         rows = cursor.fetchall()
 
     conn.close()
@@ -118,6 +159,12 @@ def search(q: str = Query(..., min_length=1)):
 def home():
     html_path = os.path.join(os.path.dirname(__file__), "..", "index.html")
     return FileResponse(html_path)
+
+@app.get("/api/visitors")
+def visitors():
+    increment_visitor_count()
+    count = get_visitor_count()
+    return {"count": count}
 
 @app.get("/api/health")
 def health():
